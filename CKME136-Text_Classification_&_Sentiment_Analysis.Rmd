@@ -19,16 +19,59 @@ In other words, text analytics studies the face value of the words, including th
 
 For this project, I will be analyzing Stantec's public tweets, https://twitter.com/stantec.
 
-```{r cars}
-summary(cars)
+```{r packages}
+#load the required packages
+install.packages(c("twitteR", "ROAuth", "plyr", "stringr", "ggplot2"), dependencies = TRUE)
+
+
+library(twitteR)
+library(ROAuth)
+library(plyr)
+library(stringr)
+library(ggplot2)
+
+
+# need to download this file for Windows
+download.file(url = "http://curl.haxx.se/ca/cacert.pem", destfile = "cacert.pem")
+
 ```
 
-## Including Plots
+## Twitter API
 
-You can also embed plots, for example:
+Get the Twitter application information from https://apps.twitter.com/app/15285185 
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+Application Settings
+
+Consumer Key (API Key) - 23N7OF29dGUuZ3n7yJG9vEhbV
+Consumer Secret (API Secret) - 4CuzRmbsPnqy2fHf8XgPVaxoZjpq0hKLtEK5wKtAeTq8Jm36rk
+Access Level	- Read and write
+Owner	- eye_an
+Owner ID	- 23886393
+Callback URL -	None
+Callback URL Locked -	Yes
+Sign in with Twitter -	Yes
+App-only authentication -	https://api.twitter.com/oauth2/token
+Request token URL -	https://api.twitter.com/oauth/request_token
+Authorize URL -	https://api.twitter.com/oauth/authorize
+Access token URL -	https://api.twitter.com/oauth/access_token
+
+
+```{r Twitter API}
+
+# accessing the Twitter API
+
+requestURL <- "https://api.twitter.com/oauth/request_token"
+accessURL <- "https://api.twitter.com/oauth/access_token"
+authURL <- "https://api.twitter.com/oauth/authorize"
+consumerKey <- "23N7OF29dGUuZ3n7yJG9vEhbV"
+consumerSecret <- "4CuzRmbsPnqy2fHf8XgPVaxoZjpq0hKLtEK5wKtAeTq8Jm36rk"
+Cred <- OAuthFactory$new(consumerKey = consumerKey,
+                         consumerSecret = consumerSecret,
+                         requestURL = requestURL, 
+                         accessURL = accessURL,
+                         authURL = authURL)
+Cred$handshake(cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl"))
+
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
