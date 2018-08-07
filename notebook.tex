@@ -1,0 +1,1106 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{CKME136-cpstn\_prj-isantillan}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \section{CKME136 - Text Classification \& Sentiment Analysis -
+isantillan}\label{ckme136---text-classification-sentiment-analysis---isantillan}
+
+    \textbf{Sentiment Analysis} also known as \emph{Opinion Mining} is the
+process of extracting and understanding human feelings from data.
+Sentiment analysis is widely applied to reviews and social media for a
+variety of applications, ranging from marketing to customer service.
+
+    In this project, we use twitter to understand how people are feeling
+about \textbf{Stantec} using the Natural Language Library
+\emph{TextBlob}
+
+    Human preferences are practically unpredictable and we've invented the
+sciences of Pyschology and Sociology to help us study these things. Both
+are the scientific study of people and all the emotions and
+relationships and behaviors that they display.
+
+Traditionally pyschologists would formulate a hypothesis, then to test
+it they would find a subset of people that would fit their cateogry,
+bring them into the lab and ask them to do some tasks while recording
+the results. But with data freely available, we as Data Scientists can
+do the same thing with the best psychology tool out there, twitter!
+
+Twitter is a treasure trove of sentiment. People around the world output
+thousands of reactions and opinions on every topic under the sun, every
+second of every day. It's like one giant psychological database that is
+constantly being updated and we can use it ot analyze millions of text
+snippets, in seconds, with the power of machine learning.
+
+    \subsubsection{How does Sentiment Analysis
+work?}\label{how-does-sentiment-analysis-work}
+
+    \begin{figure}
+\centering
+\includegraphics{attachment:image.png}
+\caption{image.png}
+\end{figure}
+
+    \begin{figure}
+\centering
+\includegraphics{attachment:image.png}
+\caption{image.png}
+\end{figure}
+
+    \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  When we receive some input text, in this example, a tweet, we'll first
+  want to split it up into several words or sentences. This process is
+  called \textbf{Tokenization} because we're creating small tokens from
+  big text.
+\end{enumerate}
+
+    \begin{quote}
+\emph{Tokenization} is the process of breaking a stream of textual
+content up into words, terms, symbols, or some other meaningful elements
+called tokens
+\end{quote}
+
+    We can count the number of times each word shows up once a text is
+tokenized. This is called the \emph{Bag of Words Model}. Then we can
+look up the sentiment value of each word from a sentiment lexicon that
+has is it all pre-recorded to classify the total sentiment value of our
+tweet.
+
+    \subsection{Pre-requisites}\label{pre-requisites}
+
+    \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Register for Twitter API
+\item
+  Install dependencies
+\item
+  Write our script
+\end{enumerate}
+
+    \subsection{Register for Twitter API}\label{register-for-twitter-api}
+
+    \begin{figure}
+\centering
+\includegraphics{attachment:image.png}
+\caption{image.png}
+\end{figure}
+
+    An \textbf{API} or an \textbf{Application Programing Interface} is a
+gateway that lets you access some servers' internal functionality. In
+our case, Twitter. Thus, we will be able to read and write tweets right
+from our app using Twitter's API.
+
+    \begin{figure}
+\centering
+\includegraphics{attachment:image.png}
+\caption{image.png}
+\end{figure}
+
+    Let's sign up for it in the browser!
+
+First we'll want to make sure that we have a Twitter account set up with
+a verified phone number attached to it. Once we have that, we can create
+our first Twitter app. We'll select the 'Create New App' button and type
+in a \emph{name} and a \emph{description} of our app, as well as a
+website. Once we have all the required information, we can press the
+'Create Your Twitter application' button on the bottom and our app is
+created!
+
+    \begin{figure}
+\centering
+\includegraphics{attachment:image.png}
+\caption{image.png}
+\end{figure}
+
+    We can go to our app and click on the 'Keys and Access Tokens' Tab.
+We're going to need to use these keys in our script to authenticate or
+verify our identity with Twitter
+
+    \begin{figure}
+\centering
+\includegraphics{attachment:image.png}
+\caption{image.png}
+\end{figure}
+
+    \begin{figure}
+\centering
+\includegraphics{attachment:image.png}
+\caption{image.png}
+\end{figure}
+
+    \subsection{Dependencies}\label{dependencies}
+
+    \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Tweepy - library to acccess Twitter API
+\item
+  TextBlob - library for sentiment analysis
+\item
+  WordCloud - library for WordCloud
+\end{enumerate}
+
+    \begin{figure}
+\centering
+\includegraphics{attachment:image.png}
+\caption{image.png}
+\end{figure}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}217}]:} \PY{c+c1}{\PYZsh{} pip install tweepy \PYZhy{} library to access Twitter API}
+          \PY{c+c1}{\PYZsh{} pip install TextBlob \PYZhy{} library for sentiment analysis}
+          
+          \PY{c+c1}{\PYZsh{} conda install \PYZhy{}c https://conda.anaconda.org/conda\PYZhy{}forge wordcloud \PYZsh{} in the Anaconda prompt}
+\end{Verbatim}
+
+
+    \begin{quote}
+\emph{Note: Microsoft Visual C++ Build Tools 2015 is a pre-req for
+installing WorldCloud}
+https://github.com/amueller/word\_cloud/issues/134\#issuecomment-294081655
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}143}]:} \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+          \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+          
+          \PY{k+kn}{import} \PY{n+nn}{tweepy}
+          \PY{k+kn}{from} \PY{n+nn}{textblob} \PY{k}{import} \PY{n}{TextBlob}
+          \PY{k+kn}{from} \PY{n+nn}{wordcloud} \PY{k}{import} \PY{n}{WordCloud}
+\end{Verbatim}
+
+
+    For the purpose of this project, we'll show the required keys here to
+access twitter:
+
+Let's create the 4 variables that we'll need to authenticate with
+Twitter, which basically means, login via code.
+
+\begin{itemize}
+\tightlist
+\item
+  consumer\_key
+\item
+  consumer\_secret
+\item
+  access\_token
+\item
+  access\_token\_secret
+\end{itemize}
+
+To do that, we'll create a variable called auth for authentication and
+use the \textbf{OAuthhandler} of tweepy. This method takes 2 arguements,
+the \texttt{consumer\_key} and the \texttt{consumer\_secret}.
+
+We'll also need to call the \textbf{set\_access\_token} on the auth
+variable which takes 2 arguements: the \texttt{access\_token} and the
+\texttt{access\_token\_secret}. That's it! We've created our
+authentication variable; \texttt{auth}.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}144}]:} \PY{c+c1}{\PYZsh{} consumer keys}
+          \PY{n}{consumer\PYZus{}key} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{yf2Hy9e0iTF7cyRVJlprHUOhy}\PY{l+s+s1}{\PYZsq{}}
+          \PY{n}{consumer\PYZus{}secret} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{0UA45fOO4frij3blmrJTfmgCUsTp56mFjgHzn2WFBrmloYtblM}\PY{l+s+s1}{\PYZsq{}}
+          
+          \PY{c+c1}{\PYZsh{} access token keys}
+          \PY{n}{access\PYZus{}token} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{23886393\PYZhy{}OFMXGQQzyNnXujkGXCpqy7dNYXA2yP1xEuHpW0o0S}\PY{l+s+s1}{\PYZsq{}}
+          \PY{n}{access\PYZus{}token\PYZus{}secret} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{u3t9yXa7lTuknxyM47hxA2na7dj4JWfJlS9uxQ6LSSMpv}\PY{l+s+s1}{\PYZsq{}}
+          
+          \PY{c+c1}{\PYZsh{} authentication}
+          \PY{n}{auth} \PY{o}{=} \PY{n}{tweepy}\PY{o}{.}\PY{n}{OAuthHandler}\PY{p}{(}\PY{n}{consumer\PYZus{}key}\PY{p}{,} \PY{n}{consumer\PYZus{}secret}\PY{p}{)}
+          \PY{n}{auth}\PY{o}{.}\PY{n}{set\PYZus{}access\PYZus{}token}\PY{p}{(}\PY{n}{access\PYZus{}token}\PY{p}{,} \PY{n}{access\PYZus{}token\PYZus{}secret}\PY{p}{)}
+\end{Verbatim}
+
+
+    Now we want to create our main variable from which we'll do all of our
+Twitter analysis on. We'll call it \texttt{api} and assign it a value
+from the tweepy api method which takes a single authentication argument
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}145}]:} \PY{n}{api} \PY{o}{=} \PY{n}{tweepy}\PY{o}{.}\PY{n}{API}\PY{p}{(}\PY{n}{auth}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}146}]:} \PY{n}{stantec\PYZus{}tweets} \PY{o}{=} \PY{n}{api}\PY{o}{.}\PY{n}{search}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{stantec}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{count}\PY{o}{=}\PY{l+m+mi}{1000}\PY{p}{)} \PY{c+c1}{\PYZsh{} max count is 100}
+\end{Verbatim}
+
+
+    Let's print out the tweets with the sentiment score and see what we
+have!
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}147}]:} \PY{k}{for} \PY{n}{tweet} \PY{o+ow}{in} \PY{n}{stantec\PYZus{}tweets}\PY{p}{:}
+              \PY{n+nb}{print}\PY{p}{(}\PY{n}{tweet}\PY{o}{.}\PY{n}{text}\PY{p}{)}
+              \PY{n}{analysis} \PY{o}{=} \PY{n}{TextBlob}\PY{p}{(}\PY{n}{tweet}\PY{o}{.}\PY{n}{text}\PY{p}{)}
+              \PY{n+nb}{print}\PY{p}{(}\PY{n}{analysis}\PY{o}{.}\PY{n}{sentiment}\PY{p}{)}
+              \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+RT elliothartley: RT \_ChrisJAndrews: Claudia from Stantec demoing infraworks EsriUC \#EngineeringSummit.  You read t… https://t.co/R6Byb1Rt4I
+Sentiment(polarity=0.0, subjectivity=0.0)
+
+
+Thanks to all who joined us at @stantec \#Philadelphia Stories from an Architect. Great views, voices, and stories s… https://t.co/LiLDH6rvlw
+Sentiment(polarity=0.5, subjectivity=0.475)
+
+
+RT @\_ChrisJAndrews: Claudia from @Stantec demoing @infraworks @EsriUC \#EngineeringSummit.  You read that right. \#BIM https://t.co/eVKHd1vNFj
+Sentiment(polarity=0.2857142857142857, subjectivity=0.5357142857142857)
+
+
+RT @\_ChrisJAndrews: Claudia from @Stantec demoing @infraworks @EsriUC \#EngineeringSummit.  You read that right. \#BIM https://t.co/eVKHd1vNFj
+Sentiment(polarity=0.2857142857142857, subjectivity=0.5357142857142857)
+
+
+Claudia from @Stantec demoing @infraworks @EsriUC \#EngineeringSummit.  You read that right. \#BIM https://t.co/eVKHd1vNFj
+Sentiment(polarity=0.2857142857142857, subjectivity=0.5357142857142857)
+
+
+RT @\_murraya: Thanks @AfH\_news for taking the time to visit the projects in NI and for heading to the west to meet our clients and hear fro…
+Sentiment(polarity=0.2, subjectivity=0.2)
+
+
+RT @\_murraya: Thanks @AfH\_news for taking the time to visit the projects in NI and for heading to the west to meet our clients and hear fro…
+Sentiment(polarity=0.2, subjectivity=0.2)
+
+
+Claudia Anderson Gallegos is speaking about Stantec’s CAD/BIM/GIS integration at \#esriuc Engineering Summit! https://t.co/8O4dUi0ZUK
+Sentiment(polarity=0.0, subjectivity=0.0)
+
+
+RT @StantecAmyS: When no child left behind becomes no potential left unexplored. Read Erin Machac’s thoughts on how \#learning environments…
+Sentiment(polarity=-0.1, subjectivity=0.425)
+
+
+RT @BreaStantec: Whether it’s severe drought or a 500-year flood, water-management issues can be perpetually problematic and have significa…
+Sentiment(polarity=-0.05, subjectivity=0.2)
+
+
+RT @Stantec: ICYMI: Taking \#workplace culture to the next level with interactive, engaging social spaces. Read more about the cool new café…
+Sentiment(polarity=0.23661616161616159, subjectivity=0.39520202020202017)
+
+
+RT @Stantec: ICYMI: Stantec team members in \#Minneapolis will be serving up \#water flights and convos about sustainable water management at…
+Sentiment(polarity=0.0, subjectivity=0.0)
+
+
+ICYMI: Stantec team members in \#Minneapolis will be serving up \#water flights and convos about sustainable water ma… https://t.co/iZSxVHh2zf
+Sentiment(polarity=0.0, subjectivity=0.0)
+
+
+@Stantec @\_CMHospital @worldarchfest Amazing work by a wonderful team @Stantec and @\_CMHospital. So proud to have worked with both
+Sentiment(polarity=0.8000000000000002, subjectivity=0.9666666666666667)
+
+
+RT @Stantec: The @Stantec-designed @\_CMHospital Redevelopment has been shortlisted for the prestigious @worldarchfest. Our \#design team wil…
+Sentiment(polarity=0.0, subjectivity=0.0)
+
+
+[Job] Field Technician | Company: Stantec | Location: Fredericton NB New Brunswick Canada | \#Fredericton \#Offshore… https://t.co/vzxqlV02sU
+Sentiment(polarity=0.13636363636363635, subjectivity=0.45454545454545453)
+
+
+Saint Paul, \#MN - Stantec - Construction Manager - Paul MN office has an opportunity for a Construction Manager in… https://t.co/iG2jCofl5v
+Sentiment(polarity=0.0, subjectivity=0.0)
+
+
+RT @Stantec: ICYMI: “Speak simply, frankly, and from the heart, not using architectural lingo or professional jargon.” For more perspective…
+Sentiment(polarity=0.19999999999999998, subjectivity=0.3190476190476191)
+
+
+ICYMI: Taking \#workplace culture to the next level with interactive, engaging social spaces. Read more about the co… https://t.co/Zx5cGjfGsI
+Sentiment(polarity=0.23333333333333334, subjectivity=0.31666666666666665)
+
+
+RT @skyrisecities: The 41-storey Atelier in \#Dallas breaks ground with a design by @Stantec     https://t.co/8TpySZtXJ7 \#ZOMLiving \#constru…
+Sentiment(polarity=0.0, subjectivity=0.0)
+
+
+Stantec \$STN Downgraded by CIBC  https://t.co/VVNvbff2y5
+Sentiment(polarity=0.0, subjectivity=0.0)
+
+
+CIBC Downgrades Stantec \$STN to Neutral https://t.co/oBkaACflfe
+Sentiment(polarity=0.0, subjectivity=0.0)
+
+
+CIBC Lowers Stantec \$STN to Neutral https://t.co/mzHJPqwYS3
+Sentiment(polarity=0.0, subjectivity=0.0)
+
+
+\$705.24 Million in Sales Expected for Stantec Inc. \$STN This Quarter https://t.co/5bIvBjFPQ0
+Sentiment(polarity=-0.1, subjectivity=0.4)
+
+
+Stantec Inc. \$STN Expected to Announce Quarterly Sales of \$705.24 Million https://t.co/gXcz2qYpYp
+Sentiment(polarity=-0.1, subjectivity=0.4)
+
+
+4 reasons microtransit is here to stay https://t.co/YQrIGvAO0z
+Sentiment(polarity=0.0, subjectivity=0.0)
+
+
+5 ways pop-up shops are influencing retail design https://t.co/upZilysD7I
+Sentiment(polarity=0.0, subjectivity=0.0)
+
+
+RT @Stantec: ICYMI: Creating an “in-between” space—where faculty and students would meet informally and discuss their work—was important fo…
+Sentiment(polarity=0.4, subjectivity=1.0)
+
+
+RT @AndreaJ99461832: Proud to share that our @Stantec @\_CMHospital project is shortlisted for the prestigious @worldarchfest. Our \#design t…
+Sentiment(polarity=0.8, subjectivity=1.0)
+
+
+RT @AndreaJ99461832: .@uLethbridge Science \&amp; Academic Building – @KPMBarchitects \textbackslash{}@Stantec collaboration – was shortlisted for prestigious…
+Sentiment(polarity=0.0, subjectivity=0.0)
+
+
+RT @AndreaJ99461832: To support cutting-edge \#research, health science buildings need rooms for \#collaboration and informal learning. See h…
+Sentiment(polarity=0.0, subjectivity=0.0)
+
+
+RT @AndreaJ99461832: Proud to share that our @Stantec @\_CMHospital project is shortlisted for the prestigious @worldarchfest. Our \#design t…
+Sentiment(polarity=0.8, subjectivity=1.0)
+
+
+RT @AndreaJ99461832: .@uLethbridge Science \&amp; Academic Building – @KPMBarchitects \textbackslash{}@Stantec collaboration – was shortlisted for prestigious…
+Sentiment(polarity=0.0, subjectivity=0.0)
+
+
+ICYMI: Creating an “in-between” space—where faculty and students would meet informally and discuss their work—was i… https://t.co/9uO0B5kHfG
+Sentiment(polarity=0.0, subjectivity=0.0)
+
+
+Thanks @AfH\_news for taking the time to visit the projects in NI and for heading to the west to meet our clients an… https://t.co/smCwPxSLBu
+Sentiment(polarity=0.2, subjectivity=0.2)
+
+
+Learn more about Stantec:
+\#superiorazchamber https://t.co/W93tBmzpQX
+Sentiment(polarity=0.5, subjectivity=0.5)
+
+
+RT @Stantec: ICYMI: What are the differences between multi-family housing and \#student housing? Our Bryan Morrison shares his \#design insig…
+Sentiment(polarity=0.0, subjectivity=0.0)
+
+
+ICYMI: What are the differences between multi-family housing and \#student housing? Our Bryan Morrison shares his… https://t.co/3RilRZHPHg
+Sentiment(polarity=0.0, subjectivity=0.0)
+
+
+Had a great time at @Stantec Community Days \#YYC! In September Stantec will go out into the community volunteering… https://t.co/OIidcslpLv
+Sentiment(polarity=1.0, subjectivity=0.75)
+
+
+RT @HLMArchitects: Fantastic day yesterday with @AfH\_news thanks to our hosts at \#Omagh Hospital \&amp; Primary Care Complex and \#Enniskillen So…
+Sentiment(polarity=0.175, subjectivity=0.5)
+
+
+Critical Contrast: ATKINS WS GBP0.005 \$WATKF \&amp; Stantec \$STN https://t.co/2jpNOmMVhR
+Sentiment(polarity=0.0, subjectivity=0.8)
+
+
+RT @Yolanda\_Lew: Beautiful new views of downtown Edmonton @IceDistrict @JWMarriottEdm @stantec @RogersPlace \#yeg https://t.co/wd8eSbGXui
+Sentiment(polarity=0.49318181818181817, subjectivity=0.7272727272727273)
+
+
+Ingénieur / Ingénieure mécanique du bâtiment: Stantec (Montréal QC): "est actuellement à la recherche d'un ingénieu… https://t.co/BhECGjlckb
+Sentiment(polarity=0.0, subjectivity=0.0)
+
+
+Ingénieur / ingénieure en infrastructures urbaines (projet REM): Stantec (Montréal QC): "est actuellement à la rech… https://t.co/7iPrUO6Tl6
+Sentiment(polarity=0.0, subjectivity=0.0)
+
+
+Ingénieur / Ingénieure électricité du bâtiment: Stantec (Montréal QC): "est actuellement à la recherche d'un ingéni… https://t.co/0yeBglJ7aI
+Sentiment(polarity=0.0, subjectivity=0.0)
+
+
+Administrateur / administratrice de contrat - Bâtiment (Mécanique / électrique): Stantec (Montréal QC): "est actuel… https://t.co/sH8QdNhfuw
+Sentiment(polarity=0.0, subjectivity=0.0)
+
+
+Analysts See \$0.55 EPS for Stantec Inc. \$STN - https://t.co/5UlTWrVvvQ
+Sentiment(polarity=0.0, subjectivity=0.0)
+
+
+Analysts See \$0.55 EPS for Stantec Inc. \$STN https://t.co/NFSQb4vdjL
+Sentiment(polarity=0.0, subjectivity=0.0)
+
+
+EPS for Stantec Inc. \$STN Expected At \$0.55 - https://t.co/sWFtSPewNn
+Sentiment(polarity=-0.1, subjectivity=0.4)
+
+
+Financial Review: Stantec \$STN versus ATKINS WS GBP0.005 \$WATKF https://t.co/iFAukXPYOs
+Sentiment(polarity=0.0, subjectivity=0.0)
+
+
+Critical Contrast: Stantec \$STN and ATKINS WS GBP0.005 \$WATKF https://t.co/Q8ZOhensUG
+Sentiment(polarity=0.0, subjectivity=0.8)
+
+
+Stantec Inc. \$STN Analysts See \$0.43 EPS - https://t.co/z9Ks7rVT7Y
+Sentiment(polarity=0.0, subjectivity=0.0)
+
+
+Analysts See \$0.43 EPS for Stantec Inc. \$STN https://t.co/wP73HVVN3y
+Sentiment(polarity=0.0, subjectivity=0.0)
+
+
+\$0.43 EPS Expected for Stantec Inc. \$STN - https://t.co/SLhqpqVsd5
+Sentiment(polarity=-0.1, subjectivity=0.4)
+
+
+Stantec \$STN Stock Rating Lowered by CIBC https://t.co/ZddnfAewWu
+Sentiment(polarity=0.0, subjectivity=0.0)
+
+
+Archaeological Field Technician - Stantec - Sacramento, CA https://t.co/yWOpNnGfvZ Job Sacramento
+Sentiment(polarity=0.0, subjectivity=0.0)
+
+
+Archaeological Field Technician - Stantec - San Jose, CA https://t.co/yEK0ML8z5w Job San José
+Sentiment(polarity=0.0, subjectivity=0.0)
+
+
+Stantec \$STN Rating Lowered to Neutral at CIBC https://t.co/WhhEK9tfjK
+Sentiment(polarity=0.0, subjectivity=0.0)
+
+
+Stantec \$STN Rating Lowered to Neutral at CIBC https://t.co/ABteayoCvq
+Sentiment(polarity=0.0, subjectivity=0.0)
+
+
+Scammer Impersonating Stantec Canada / Fake Job Scam Fraud https://t.co/ojoxBy5bZQ
+Sentiment(polarity=-0.5, subjectivity=1.0)
+
+
+Paralegal: Stantec (Calgary AB): "with the best. Join a smart, creative, and inspired team that works behind the sc… https://t.co/9KUfObkcrg
+Sentiment(polarity=0.3285714285714285, subjectivity=0.6607142857142857)
+
+
+Financial Analysis.A2.Corporate: Stantec (Edmonton AB): "Grow with the best. Join a smart, creative, and inspired t… https://t.co/dklJcsOokM
+Sentiment(polarity=0.42857142857142855, subjectivity=0.4857142857142857)
+
+
+Financial Analysis.A2.Corporate: Stantec (Edmonton AB): "office setting; may require some field work. This descript… https://t.co/Uyv8dxoRMb
+Sentiment(polarity=0.0, subjectivity=0.0)
+
+
+Financial Analysis.A2.Corporate: Stantec (Edmonton AB): "Grow with the best. Join a smart, creative, and inspired t… https://t.co/UhvSxPjVeN
+Sentiment(polarity=0.42857142857142855, subjectivity=0.4857142857142857)
+
+
+Paralegal: Stantec (Edmonton AB): "Grow with the best. Join a smart, creative, and inspired team that works behind… https://t.co/FaeEBt9KdY
+Sentiment(polarity=0.5714285714285714, subjectivity=0.6476190476190476)
+
+
+Financial Analysis.A2.Corporate: Stantec (Edmonton AB): "with the best. Join a smart, creative, and inspired team t… https://t.co/P5xkyCfPFo
+Sentiment(polarity=0.42857142857142855, subjectivity=0.4857142857142857)
+
+
+Paralegal: Stantec (Calgary AB): "Grow with the best. Join a smart, creative, and inspired team that works behind t… https://t.co/GFBKW6FNek
+Sentiment(polarity=0.3285714285714285, subjectivity=0.6607142857142857)
+
+
+Paralegal: Stantec (Edmonton AB): "with the best. Join a smart, creative, and inspired team that works behind the s… https://t.co/uXcgWmyZsY
+Sentiment(polarity=0.3285714285714285, subjectivity=0.6607142857142857)
+
+
+Financial Analysis.A2.Corporate: Stantec (Edmonton AB): "with the best. Join a smart, creative, and inspired team t… https://t.co/qTOx6q6ZZr
+Sentiment(polarity=0.42857142857142855, subjectivity=0.4857142857142857)
+
+
+Paralegal: Stantec (Calgary AB): "with the best. Join a smart, creative, and inspired team that works behind the sc… https://t.co/qnN4yjanrz
+Sentiment(polarity=0.3285714285714285, subjectivity=0.6607142857142857)
+
+
+Paralegal: Stantec (Edmonton AB): "with the best. Join a smart, creative, and inspired team that works behind the s… https://t.co/tJJTTWxlkL
+Sentiment(polarity=0.3285714285714285, subjectivity=0.6607142857142857)
+
+
+Financial Analysis.A2.Corporate: Stantec (Edmonton AB): "accounting degree or diploma (or equivalent experience). 3… https://t.co/uyNRStqSvp
+Sentiment(polarity=0.0, subjectivity=0.0)
+
+
+RT @ErinMachacAIA: New Science and Technology building @TAMUSanAntonio is coming together, and getting noticed {\ldots}designed by @Stantec {\ldots}u…
+Sentiment(polarity=0.13636363636363635, subjectivity=0.45454545454545453)
+
+
+Archaeologist - Stantec - Sacramento, CA https://t.co/DQ5GldzZmg Job Sacramento
+Sentiment(polarity=0.0, subjectivity=0.0)
+
+
+Archaeologist - Stantec - Portland, OR https://t.co/WXFzNjhLdE Job Portland
+Sentiment(polarity=0.0, subjectivity=0.0)
+
+
+Archaeologist - Stantec - Fresno, CA https://t.co/onOLhfWKZb Job Fresno
+Sentiment(polarity=0.0, subjectivity=0.0)
+
+
+The SacBUG is BACK! Mark your calendars for July 19th and meet us to see great views of Captiol Mall from Stantec's… https://t.co/NhefOueMFh
+Sentiment(polarity=0.4, subjectivity=0.375)
+
+
+RT @BalfourBeattyUS: We recently celebrated the groundbreaking of Atelier/Flora Lofts/Flora Parking designed by Stantec. Thanks to ZOM Livi…
+Sentiment(polarity=0.275, subjectivity=0.475)
+
+
+Stantec : Two Stantec projects shortlisted for the 2018 World Architecture Festival  https://t.co/v0IDmbh6tR
+Sentiment(polarity=0.0, subjectivity=0.0)
+
+
+.@uLethbridge Science \&amp; Academic Building – @KPMBarchitects \textbackslash{}@Stantec collaboration – was shortlisted for prestigio… https://t.co/5XKxu58Niu
+Sentiment(polarity=0.0, subjectivity=0.0)
+
+
+[Job] Field Technician | Company: Stantec | Location: Fredericton NB New Brunswick Canada | \#Fredericton \#Nuclear… https://t.co/SSofmbzoRZ
+Sentiment(polarity=0.13636363636363635, subjectivity=0.45454545454545453)
+
+
+RT @CresaDenver: "As we enter one of the largest talent crises the world has seen, forward-thinking organizations are looking at sustainabl…
+Sentiment(polarity=0.0, subjectivity=0.0)
+
+
+RT @EditorPRISMpub: Two Stantec projects shortlisted for the 2018 World Architecture Festival https://t.co/yLE5ZrU3ia https://t.co/Hy0OBQoV…
+Sentiment(polarity=0.0, subjectivity=0.0)
+
+
+RT @Stantec: The @Stantec-designed @\_CMHospital Redevelopment has been shortlisted for the prestigious @worldarchfest. Our \#design team wil…
+Sentiment(polarity=0.0, subjectivity=0.0)
+
+
+@RichardSkermer @IanOyeg @EdgarDevelopmnt @Stantec @JWMarriottEdm @DECLorg @OCLYEG @PlanEdmonton @ULIAlberta… https://t.co/XrZXZchflD
+Sentiment(polarity=0.0, subjectivity=0.0)
+
+
+@RichardSkermer @CALLIDUSDevMgmt @EdgarDevelopmnt @Stantec @JWMarriottEdm @DECLorg @OCLYEG @PlanEdmonton… https://t.co/R1qKqV7eph
+Sentiment(polarity=0.0, subjectivity=0.0)
+
+
+@CALLIDUSDevMgmt @IanOyeg @EdgarDevelopmnt @Stantec @JWMarriottEdm @DECLorg @OCLYEG @PlanEdmonton @ULIAlberta… https://t.co/ZL57iasK4l
+Sentiment(polarity=0.0, subjectivity=0.0)
+
+
+Two Stantec projects shortlisted for the 2018 World Architecture Festival https://t.co/yLE5ZrU3ia https://t.co/Hy0OBQoVLv
+Sentiment(polarity=0.0, subjectivity=0.0)
+
+
+RT @constructionw: Big Gratuitous Shout Out to all our fantastic sponsors who are making our CCW Summer Social possible.  @Stantec \#AME\_Gro…
+Sentiment(polarity=-0.01333333333333333, subjectivity=0.5800000000000001)
+
+
+And thanks to the great staff @Stantec and @CityofEdmonton we enjoy these \#yegbike turn boxes as well in our bike g… https://t.co/gsVnVWXt7k
+Sentiment(polarity=0.4666666666666666, subjectivity=0.48333333333333334)
+
+
+The good folks at @Stantec are hiring a GIS Technician. https://t.co/vIHCTeTlr8
+Sentiment(polarity=0.7, subjectivity=0.6000000000000001)
+
+
+@BowValley @scotiabank @RBC @mountroyal4u @Westin @TricoHomes @AHS\_YYCZone @BoydenCanada @CalgFoundation @Stantec Thanks for having us!
+Sentiment(polarity=0.25, subjectivity=0.2)
+
+
+RT @Stantec: .@uLethbridge Science \&amp; Academic Building – @KPMBarchitects \textbackslash{}@Stantec collaboration – was shortlisted for prestigious @worldar…
+Sentiment(polarity=0.0, subjectivity=0.0)
+
+
+RT @CoreNetCanada: A very cool transformation at \#Toronto's @UofT Faculty of Dentistry: Creating “in-between” \#spaces in research facilitie…
+Sentiment(polarity=0.45499999999999996, subjectivity=0.8450000000000001)
+
+
+RT @Stantec: Creating an “in-between” space—where faculty and students would meet informally and discuss their work—was important for the @…
+Sentiment(polarity=0.4, subjectivity=1.0)
+
+
+The Mandela Effect refers to when a large number of people share a false memory, originally attributed to the exist… https://t.co/B7WkutRUdQ
+Sentiment(polarity=0.06309523809523807, subjectivity=0.5928571428571429)
+
+
+RT @kytnwpc: Thank you to WPC18 Gold Sponsor - Stantec! @Stantec \#kytnwpc18 https://t.co/YOVsWqAEaO
+Sentiment(polarity=0.0, subjectivity=0.0)
+
+
+Big Gratuitous Shout Out to all our fantastic sponsors who are making our CCW Summer Social possible.  @Stantec… https://t.co/OLofstGfLZ
+Sentiment(polarity=-0.01333333333333333, subjectivity=0.5800000000000001)
+
+
+RT @Stantec: The @Stantec-designed @\_CMHospital Redevelopment has been shortlisted for the prestigious @worldarchfest. Our \#design team wil…
+Sentiment(polarity=0.0, subjectivity=0.0)
+
+
+Why your office needs a makerspace—it’s about investing in the creative workplace https://t.co/W8VV7wRxiL
+Sentiment(polarity=0.5, subjectivity=1.0)
+
+
+
+    \end{Verbatim}
+
+    \begin{figure}
+\centering
+\includegraphics{attachment:image.png}
+\caption{image.png}
+\end{figure}
+
+    \textbf{Polarity} measures how positive or negative some texts is and
+\textbf{subjectivity} measures how much of an opinion it is versus how
+much factual.
+
+    Let's export this to a csv with an associated label. The label will show
+either \emph{'Positive'} or \emph{'Negative'} for polarity.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}148}]:} \PY{n}{textList} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{p}{)}
+          \PY{n}{sentimentList} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{p}{)}
+          
+          \PY{k}{for} \PY{n}{tweet} \PY{o+ow}{in} \PY{n}{stantec\PYZus{}tweets}\PY{p}{:}
+              \PY{n}{txt} \PY{o}{=} \PY{n}{tweet}\PY{o}{.}\PY{n}{text}
+              \PY{n}{textList}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{txt}\PY{p}{)}
+              \PY{n}{analysis} \PY{o}{=} \PY{n}{TextBlob}\PY{p}{(}\PY{n}{txt}\PY{p}{)}
+              \PY{n}{pol} \PY{o}{=} \PY{n}{analysis}\PY{o}{.}\PY{n}{sentiment}\PY{o}{.}\PY{n}{polarity}
+              \PY{k}{if}\PY{p}{(}\PY{n}{pol} \PY{o}{\PYZlt{}} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{:}
+                  \PY{n}{sentimentList}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Postivite}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+              \PY{k}{else}\PY{p}{:}
+                  \PY{n}{sentimentList}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Negative}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+              
+          \PY{n}{df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Tweet}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{n}{textList}\PY{p}{,}
+                            \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sentiment}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{n}{sentimentList}\PY{p}{\PYZcb{}}\PY{p}{)}
+          \PY{n}{df}\PY{o}{.}\PY{n}{to\PYZus{}csv} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{./data/twitter\PYZus{}sentiment.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{sep} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{,}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{index} \PY{o}{=} \PY{k+kc}{False}\PY{p}{)}\PY{l+m+mi}{0}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}149}]:} \PY{n}{twitter\PYZus{}sentiment} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{./data/twitter\PYZus{}sentiment.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{index\PYZus{}col} \PY{o}{=} \PY{k+kc}{False}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}157}]:} \PY{n}{twitter\PYZus{}sentiment}\PY{o}{.}\PY{n}{head}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}157}]:}                                                Tweet Sentiment
+          0  RT elliothartley: RT \_ChrisJAndrews: Claudia f{\ldots}  Negative
+          1  Thanks to all who joined us at @stantec \#Phila{\ldots}  Negative
+          2  RT @\_ChrisJAndrews: Claudia from @Stantec demo{\ldots}  Negative
+          3  RT @\_ChrisJAndrews: Claudia from @Stantec demo{\ldots}  Negative
+          4  Claudia from @Stantec demoing @infraworks @Esr{\ldots}  Negative
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}163}]:} \PY{n}{twitter\PYZus{}sentiment}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sentiment}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{value\PYZus{}counts}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{kind} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bar}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}163}]:} <matplotlib.axes.\_subplots.AxesSubplot at 0x1693c6e85c0>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_40_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Based on the analysis, we can see that the top 100 tweets are showing
+negative sentiments.
+
+    \begin{quote}
+Let's define a function that will: 1. take our search query 2. a limit
+of 100 tweets by default 3. default to english 4. and allow us to pass a
+list of words to remove from the string.
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}212}]:} \PY{k}{def} \PY{n+nf}{tweetSearch}\PY{p}{(}\PY{n}{query}\PY{p}{,} \PY{n}{limit} \PY{o}{=} \PY{l+m+mi}{100}\PY{p}{,} \PY{n}{language} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{en}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{remove} \PY{o}{=} \PY{p}{[}\PY{p}{]}\PY{p}{)}\PY{p}{:}
+              \PY{c+c1}{\PYZsh{} create a blank variable}
+              \PY{n}{text} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdq{}}
+              
+              \PY{c+c1}{\PYZsh{} Iterate through Twitter using Tweepy to find our query in our language, with our defined limit}
+              \PY{c+c1}{\PYZsh{} For every tweet that has our query, add it ot our text holder in lower case}
+              \PY{k}{for} \PY{n}{tweet} \PY{o+ow}{in} \PY{n}{tweepy}\PY{o}{.}\PY{n}{Cursor}\PY{p}{(}\PY{n}{api}\PY{o}{.}\PY{n}{search}\PY{p}{,} \PY{n}{q} \PY{o}{=} \PY{n}{query}\PY{p}{,} \PY{n}{lang} \PY{o}{=} \PY{n}{language}\PY{p}{)}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{n}{limit}\PY{p}{)}\PY{p}{:}
+                  \PY{n}{text} \PY{o}{+}\PY{o}{=} \PY{n}{tweet}\PY{o}{.}\PY{n}{text}\PY{o}{.}\PY{n}{lower}\PY{p}{(}\PY{p}{)}
+                  
+                  \PY{c+c1}{\PYZsh{} Twitter has lots of links, we need to remove the commons parts of links to clean our data}
+                  \PY{c+c1}{\PYZsh{} First, create a list of terms that we want ot remove. This contains  https \PYZam{} co, alongside any words in our remove list}
+                  \PY{n}{removeWords} \PY{o}{=} \PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{https}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{co}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{rt}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{join}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}
+                  \PY{n}{removeWords} \PY{o}{+}\PY{o}{=} \PY{n}{remove}
+                  
+              \PY{c+c1}{\PYZsh{} For each word in our removeWords list, replace it with nothing in our main text }
+              \PY{k}{for} \PY{n}{word} \PY{o+ow}{in} \PY{n}{removeWords}\PY{p}{:}
+                  \PY{n}{text} \PY{o}{=} \PY{n}{text}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{n}{word}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+              
+              \PY{c+c1}{\PYZsh{} return our clean text}
+              \PY{k}{return} \PY{n}{text}
+\end{Verbatim}
+
+
+    Generate our text with our new function. Remove all mentions of the word
+'stantec' itself, as this will obviously be the most common!
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}213}]:} \PY{n}{stantec\PYZus{}tweets} \PY{o}{=} \PY{n}{tweetSearch}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{stantec}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{remove} \PY{o}{=}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{stantec}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{stn}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}214}]:} \PY{c+c1}{\PYZsh{}wordcloud = WordCloud().generate(\PYZsq{}\PYZsq{}.join(twitter\PYZus{}sentiment[\PYZsq{}Tweet\PYZsq{}]))}
+          \PY{n}{wordcloud} \PY{o}{=} \PY{n}{WordCloud}\PY{p}{(}\PY{n}{background\PYZus{}color} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{black}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{width} \PY{o}{=} \PY{l+m+mi}{1600}\PY{p}{,} \PY{n}{height} \PY{o}{=} \PY{l+m+mi}{800}\PY{p}{)}\PY{o}{.}\PY{n}{generate}\PY{p}{(}\PY{n}{stantec\PYZus{}tweets}\PY{p}{)}
+\end{Verbatim}
+
+
+    Plot the text with the lines below
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}219}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{,} \PY{n}{facecolor} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{k}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{wordcloud}\PY{p}{,} \PY{n}{interpolation} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bilinear}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{axis}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{off}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{n}{pad} \PY{o}{=} \PY{l+m+mi}{0}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+          
+          \PY{c+c1}{\PYZsh{} plt.savefig(\PYZsq{}./data/stantec\PYZus{}wordcloud.png\PYZsq{}, facecolor = \PYZsq{}k\PYZsq{}, bbox\PYZus{}inches = \PYZsq{}tight\PYZsq{})}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_48_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsubsection{Identify the evaluation measures: accuracy, precision,
+recall:}\label{identify-the-evaluation-measures-accuracy-precision-recall}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} code here}
+\end{Verbatim}
+
+
+    \subsection{References}\label{references}
+
+\begin{itemize}
+\tightlist
+\item
+  Janani, D. S. (2016). Text Mining: Open Source Tokenization Tools - An
+  Analysis. Advanced Computational Intelligence: An International
+  Journal (ACII), Vol.3, No.1, January 2016.
+\item
+  Ali Hasan, S. M. (2018). Machine Learning-Based Sentiment Analysis for
+  Twitter Accounts. Mathematical and Computational Applications.
+\item
+  Ankit Pradeep Patel, A. V. (2017). Literature Survey on Sentiment
+  Analysis of Twitter Data using Machine Learning Approaches. IJIRST
+  --International Journal for Innovative Research in Science \&
+  Technology \textbar{} Volume 3 \textbar{} Issue 10.
+\item
+  Joachims, Y. Y. (2008). Text\_categorization. Retrieved from
+  Scholarpedia: http://www.scholarpedia.org/article/Text\_categorization
+\item
+  Kastrenakes, J. (2018, February 8). Twitter says people are tweeting
+  more, but not longer, with 280-character limit. Retrieved from
+  theverge:
+  https://www.theverge.com/2018/2/8/16990308/twitter-280-character-tweet-length
+\item
+  Katrekar, A. (n.d.). An Introduction to Sentiment Analysis.
+  GlobalLogic.
+\item
+  Sebastian, A. K. (2012). Sentiment Analysis on Twitter. International
+  Journal of Computer Science Issues \textbar{} Vol. 9 \textbar{} Issue
+  4 \textbar{} No. 3.
+\end{itemize}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
